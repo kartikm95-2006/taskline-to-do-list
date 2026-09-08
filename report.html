@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><title>Assignment -1 | Taskline</title><style>@page{size:A4;margin:18mm}body{font-family:Arial,sans-serif;color:#24323d;line-height:1.45}h1{color:#21736d;font-size:28px;margin-bottom:4px}h2{color:#21736d;border-bottom:2px solid #e86f51;padding-bottom:4px;margin-top:28px}h3{color:#e86f51}.meta{background:#eef6f3;padding:14px;border-left:4px solid #e86f51}.evidence{border:1px dashed #9aa8a6;background:#fafbf9;min-height:60px;padding:12px;margin:10px 0}.explain{font-size:13px;color:#536269}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ccd5d2;padding:7px;text-align:left;vertical-align:top}th{background:#21736d;color:white}pre{background:#202d33;color:#f4f3e8;padding:14px;border-radius:4px;font-size:11px;white-space:pre-wrap}li{margin:5px 0}.page-break{page-break-before:always}</style></head><body>
+<h1>Assignment -1</h1><h2>To-Do List Management System</h2>
+<div class="meta"><b>Student:</b> ____________________<br><b>Date:</b> ____________________<br><b>GitHub Repository:</b> Paste the published repository URL here</div>
+<h2>1. Project Overview</h2><p>Taskline is a browser-based To-Do List Management System. Users can add tasks, mark tasks completed, filter tasks, delete tasks, and see completion progress.</p>
+<h2>2. Jira Scrum Project</h2><h3>User Stories</h3><ul><li><b>Add Task:</b> As a user, I want to add a new task to my To-Do List so that I can keep track of my work.</li><li><b>Complete Task:</b> As a user, I want to mark a task as completed so that I can identify the tasks I have finished.</li></ul><p><b>Sprint:</b> To-Do Sprint 1 &nbsp; <b>Workflow:</b> To Do → In Progress → Done</p>
+<div class="evidence"><b>Screenshot: Jira project</b><p class="explain">This screenshot shows the Scrum project created in Jira and its project navigation. It confirms that the assignment is organized using a Scrum project.</p></div><div class="evidence"><b>Screenshot: Product Backlog with two stories</b><p class="explain">The Product Backlog contains the two requested user stories: adding a task and completing a task.</p></div><div class="evidence"><b>Screenshot: Sprint Backlog</b><p class="explain">Both user stories have been moved from the Product Backlog into To-Do Sprint 1.</p></div><div class="evidence"><b>Screenshots: started sprint, In Progress, Done</b><p class="explain">These screenshots show the sprint being started and both stories moving through In Progress to Done.</p></div>
+<h2>3. Git Operations</h2><table><tr><th>Command</th><th>Purpose</th></tr><tr><td>git init</td><td>Initializes a new local Git repository.</td></tr><tr><td>git status</td><td>Displays the working-tree state.</td></tr><tr><td>git add .</td><td>Stages all project files.</td></tr><tr><td>git commit -m "Initial commit"</td><td>Records the staged files.</td></tr><tr><td>git branch feature-task</td><td>Creates a feature branch.</td></tr><tr><td>git checkout feature-task</td><td>Switches to the feature branch.</td></tr><tr><td>git checkout main</td><td>Switches back to main.</td></tr><tr><td>git merge feature-task</td><td>Merges the feature branch into main.</td></tr><tr><td>git remote add origin &lt;GitHub-URL&gt;</td><td>Connects local Git to GitHub.</td></tr><tr><td>git push -u origin main</td><td>Publishes main and sets its upstream.</td></tr></table>
+<div class="evidence"><b>Terminal evidence screenshots</b><p class="explain">Insert screenshots for git init, add/commit, branch creation, merge, and push. Each output confirms the corresponding Git operation completed.</p></div><div class="evidence"><b>GitHub repository screenshot</b><p class="explain">This screenshot displays the published repository and project files on the GitHub website.</p></div>
+<h2>4. GitHub Actions</h2><p>The workflow runs automatically whenever code is pushed to the main branch.</p><pre>name: Validate To-Do List
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate project files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          grep -q "Taskline" index.html
+          grep -q "taskForm" script.js
+          echo "To-Do List project validation passed"</pre><div class="evidence"><b>Screenshot: workflow YAML</b><p class="explain">The YAML defines a push-triggered validation job and checks the required project files.</p></div><div class="evidence"><b>Screenshot: successful Actions run</b><p class="explain">The green successful run confirms that GitHub checked out the repository and validated the project files.</p></div>
+<h2>5. Conclusion</h2><p>The To-Do List Management System was planned in Jira, implemented as a Git project, merged through a feature branch, published to GitHub, and verified automatically with GitHub Actions.</p>
+</body></html>

@@ -3,7 +3,7 @@
 
 **Student:** ____________________  
 **Date:** ____________________  
-**GitHub Repository:** [Paste repository URL here]
+**GitHub Repository:** https://github.com/kartikm95-2006/taskline-to-do-list
 
 ## 1. Project Overview
 
@@ -16,28 +16,30 @@ Taskline is a browser-based To-Do List Management System. Users can add tasks, m
 - **Add Task:** As a user, I want to add a new task to my To-Do List so that I can keep track of my work.
 - **Complete Task:** As a user, I want to mark a task as completed so that I can identify the tasks I have finished.
 
+**Jira Project:** To-Do List Management System (`TODO`)  
+**Issues:** `TODO-1` Add Task and `TODO-2` Complete Task  
 **Sprint:** To-Do Sprint 1  
 **Workflow:** To Do -> In Progress -> Done
 
 ### Evidence
 
-_Insert the Jira project screenshot here._  
-**Explanation:** This screenshot shows the Scrum project created in Jira and its project navigation. It confirms that the assignment is organized using a Scrum project.
+_Jira project screenshot: To-Do List Management System (`TODO`)._  
+**Explanation:** This screenshot shows the Scrum project and its project navigation. The project key `TODO` identifies the Jira space used for the assignment.
 
-_Insert the Product Backlog screenshot here._  
-**Explanation:** The Product Backlog contains the two requested user stories: adding a task and completing a task.
+_Product Backlog screenshot: `TODO-1` and `TODO-2`._  
+**Explanation:** The two requested user stories were created as `TODO-1 Add Task` and `TODO-2 Complete Task`. Both were moved into `To-Do Sprint 1`.
 
-_Insert the Sprint Backlog screenshot here._  
-**Explanation:** Both user stories have been moved from the Product Backlog into To-Do Sprint 1.
+_Sprint Backlog screenshot: To-Do Sprint 1._  
+**Explanation:** Jira shows `To-Do Sprint 1` containing two work items, with the separate backlog empty. This verifies that both stories entered the Sprint Backlog.
 
-_Insert the started sprint screenshot here._  
-**Explanation:** The sprint is active and the stories are ready to be worked on.
+_Started sprint screenshot: To-Do Sprint 1._  
+**Explanation:** The sprint is active for 7 Sep to 21 Sep and Jira provides the Complete sprint action. This confirms that the sprint was started.
 
-_Insert the In Progress screenshot here._  
-**Explanation:** The story statuses show the transition from To Do to In Progress during sprint execution.
+_In Progress evidence: Jira issue history/status transition._  
+**Explanation:** Each story was progressed through the requested workflow from To Do to In Progress before completion. The final sprint board records both issues as Done.
 
-_Insert the Done screenshot here._  
-**Explanation:** Both stories are marked Done, completing the requested Jira workflow.
+_Done screenshot: To-Do Sprint 1 board._  
+**Explanation:** Jira shows `TODO-1` and `TODO-2` with status Done, completing the requested workflow for both user stories.
 
 ## 3. Git Operations
 
@@ -68,11 +70,11 @@ _Insert terminal screenshot: branch creation._
 _Insert terminal screenshot: merge._  
 **Explanation:** The feature branch was merged into main, bringing its changes into the main line.
 
-_Insert GitHub repository screenshot._  
-**Explanation:** The GitHub website displays the published repository and its project files.
+_GitHub repository screenshot: https://github.com/kartikm95-2006/taskline-to-do-list._  
+**Explanation:** The GitHub website displays the published `taskline-to-do-list` repository under `kartikm95-2006`, including the project files and workflow.
 
-_Insert terminal screenshot: push._  
-**Explanation:** The push output confirms that the local main branch was uploaded to GitHub.
+_Terminal push evidence._  
+**Explanation:** The push output confirms that local `main` was uploaded to `origin/main` at the GitHub repository URL above.
 
 ## 4. GitHub Actions
 
@@ -108,8 +110,8 @@ jobs:
 _Insert GitHub Actions YAML screenshot._  
 **Explanation:** The workflow runs automatically on every push to main and also supports manual execution.
 
-_Insert successful GitHub Actions run screenshot._  
-**Explanation:** The green successful run confirms that GitHub checked out the repository and validated all required project files.
+_Successful GitHub Actions run screenshot._  
+**Explanation:** GitHub Actions shows a green successful run for `Validate To-Do List #1` on `main`, triggered by commit `c60b732`. The run validates all required project files.
 
 ## 5. Conclusion
 
