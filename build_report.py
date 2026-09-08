@@ -25,34 +25,34 @@ pdfmetrics.registerFont(TTFont("Georgia-Italic", r"C:\Windows\Fonts\georgiai.ttf
 styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(
     name="ReportTitle", parent=styles["Title"], fontName="Georgia-Bold",
-    fontSize=24, leading=28, textColor=colors.HexColor("#e86950"),
+    fontSize=25, leading=29, textColor=colors.HexColor("#f8f5ed"),
     alignment=TA_CENTER, spaceAfter=6,
 ))
 styles.add(ParagraphStyle(
-    name="Subtitle", parent=styles["Normal"], fontName="Georgia-Italic", fontSize=12, leading=16,
+    name="Subtitle", parent=styles["Normal"], fontName="Georgia-Italic", fontSize=13, leading=17,
     textColor=colors.HexColor("#e86950"), alignment=TA_CENTER, spaceAfter=20,
 ))
 styles.add(ParagraphStyle(
-    name="Section", parent=styles["Heading2"], fontName="Georgia",
-    fontSize=16, leading=20, textColor=colors.HexColor("#df684c"),
-    spaceBefore=18, spaceAfter=8,
+    name="Section", parent=styles["Heading2"], fontName="Georgia-Bold",
+    fontSize=18, leading=22, textColor=colors.HexColor("#111817"),
+    spaceBefore=14, spaceAfter=9,
 ))
 styles.add(ParagraphStyle(
-    name="Subsection", parent=styles["Heading3"], fontName="Georgia",
-    fontSize=12, leading=15, textColor=colors.HexColor("#df684c"),
-    spaceBefore=10, spaceAfter=4,
+    name="Subsection", parent=styles["Heading3"], fontName="Georgia-Bold",
+    fontSize=13, leading=17, textColor=colors.HexColor("#111817"),
+    spaceBefore=8, spaceAfter=5,
 ))
 styles.add(ParagraphStyle(
-    name="Body", parent=styles["BodyText"], fontName="Georgia", fontSize=9.5, leading=14,
+    name="Body", parent=styles["BodyText"], fontName="Georgia", fontSize=10.5, leading=15.5,
     textColor=colors.HexColor("#20302d"), spaceAfter=6,
 ))
 styles.add(ParagraphStyle(
-    name="Small", parent=styles["BodyText"], fontName="Georgia", fontSize=8, leading=11,
+    name="Small", parent=styles["BodyText"], fontName="Georgia", fontSize=9, leading=12,
     textColor=colors.HexColor("#52636a"), spaceAfter=3,
 ))
 styles.add(ParagraphStyle(
     name="Caption", parent=styles["BodyText"], fontName="Georgia-Bold",
-    fontSize=9, leading=12, textColor=colors.HexColor("#df684c"), spaceBefore=4,
+    fontSize=10, leading=13, textColor=colors.HexColor("#111817"), spaceBefore=4,
 ))
 styles.add(ParagraphStyle(
     name="CodeSmall", parent=styles["Code"], fontName="Courier",
@@ -119,16 +119,17 @@ def cover(canvas, doc):
     canvas.setFillColor(colors.HexColor("#f8f5ed"))
     left_x, right_x = 78, 335
     rows = [("STUDENT", "Kartik R Mahindrakar", "PROJECT", "Daymark To-Do List Management System"),
-            ("JIRA PROJECT", "To-Do List Management System (TODO)", "SPRINT", "To-Do Sprint 1"),
-            ("GITHUB REPOSITORY", "github.com/kartikm95-2006/taskline-to-do-list", "PREPARED", "September 8, 2026")]
+        ("JIRA PROJECT", "To-Do List Management System (TODO)", "SPRINT", "To-Do Sprint 1"),
+        ("GITHUB REPOSITORY", "github.com/kartikm95-2006/taskline-to-do-list", "", "")]
     y = 548
     for left_label, left_value, right_label, right_value in rows:
-        canvas.setFont("Arial-Bold", 7)
+        canvas.setFont("Arial-Bold", 8)
         canvas.drawString(left_x, y, left_label)
         canvas.drawString(right_x, y, right_label)
-        canvas.setFont("Georgia", 9)
+        canvas.setFont("Georgia", 10)
         canvas.drawString(left_x, y - 15, left_value)
-        canvas.drawString(right_x, y - 15, right_value)
+        if right_value:
+            canvas.drawString(right_x, y - 15, right_value)
         y -= 56
     canvas.restoreState()
 
