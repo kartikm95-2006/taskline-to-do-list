@@ -80,11 +80,14 @@ def footer(canvas, doc):
 story = []
 story.extend([
     Spacer(1, 34),
-    P("Assignment -1", "ReportTitle"),
-    P("To-Do List Management System", "Subtitle"),
+    P("SCRUM, GIT, GITHUB AND GITHUB ACTIONS", "ReportTitle"),
+    P("To-Do List Management System Assignment Report", "Subtitle"),
 ])
 meta = Table([
     [P("Student", "Small"), P("Kartik R Mahindrakar", "Small")],
+    [P("Project", "Small"), P("Daymark To-Do List Management System", "Small")],
+    [P("Jira Project", "Small"), P("To-Do List Management System (key: TODO)", "Small")],
+    [P("Sprint", "Small"), P("To-Do Sprint 1", "Small")],
     [P("Date", "Small"), P("8 September 2026", "Small")],
     [P("GitHub Repository", "Small"), P("https://github.com/kartikm95-2006/taskline-to-do-list", "Small")],
 ], colWidths=[1.45 * inch, 5.0 * inch])
@@ -102,8 +105,8 @@ story.extend([meta, Spacer(1, 14)])
 
 story.extend([
     P("1. Project Overview", "Section"),
-    P("Daymark is a browser-based To-Do List Management System. Users can add tasks, mark tasks completed, filter tasks, delete tasks, persist tasks in local storage, and see completion progress.", "Body"),
-    P("Technology: HTML, CSS, JavaScript, browser localStorage, Git, GitHub, Jira, and GitHub Actions.", "Body"),
+    P("Daymark is a browser-based To-Do List Management System built with HTML, CSS, and JavaScript. It runs without package installation or a build step. Users can add tasks, mark tasks completed, filter tasks, delete tasks, view the current date, persist tasks in local storage, and see completion progress.", "Body"),
+    P("Technology: HTML, CSS, JavaScript, browser localStorage, Git, GitHub, Jira, and GitHub Actions. The responsive interface is designed for desktop and mobile screens.", "Body"),
     P("2. Jira Scrum Project", "Section"),
     P("The Jira project is To-Do List Management System with project key TODO. The sprint is To-Do Sprint 1.", "Body"),
     P("User Stories", "Subsection"),
@@ -111,8 +114,11 @@ story.extend([
     P("2. Complete Task: As a user, I want to mark a task as completed so that I can identify the tasks I have finished.", "Body"),
     P("Jira execution: TODO-1 and TODO-2 were placed in the sprint and progressed through To Do, In Progress, and Done. The final sprint view shows both stories as Done and the separate backlog empty.", "Body"),
     evidence("jira-sprint-done.png", "Jira evidence: sprint and completed stories", "This screenshot shows the TODO project Backlog view, TODO Sprint 1, both stories, their green Done statuses, and an empty separate backlog. It verifies the Scrum sprint setup and final workflow result."),
+    P("3. Sprint Planning and Execution", "Section"),
+    P("Both stories were assigned to To-Do Sprint 1 before execution. The sprint was started for the active two-week window, and each story was moved through To Do, In Progress, and Done. Jira's final sprint summary shows 0 items in To Do, 0 items in In Progress, and 2 items in Done.", "Body"),
+    P("Status-history evidence: Jira records the stories being assigned to the sprint and progressing from To Do to In Progress and then to Done. The captured final board is the visible completion evidence for this sequence.", "Body"),
     PageBreak(),
-    P("3. Git Operations", "Section"),
+    P("4. Git Repository and Operations", "Section"),
     P("The local repository was initialized, the project files were committed, a feature branch was created and merged into main, and the result was pushed to GitHub.", "Body"),
 ])
 
@@ -128,6 +134,8 @@ commands = [
     [P("git merge feature-task", "Small"), P("Merges the feature branch into main.", "Small")],
     [P("git remote add origin <GitHub-URL>", "Small"), P("Connects the local repository to GitHub.", "Small")],
     [P("git push -u origin main", "Small"), P("Publishes main and sets its upstream branch.", "Small")],
+    [P("git remote -v", "Small"), P("Displays the configured fetch and push URLs.", "Small")],
+    [P("git log --oneline --decorate -3", "Small"), P("Shows the latest commits and branch references.", "Small")],
 ]
 command_table = Table(commands, colWidths=[2.55 * inch, 3.9 * inch], repeatRows=1)
 command_table.setStyle(TableStyle([
@@ -145,20 +153,22 @@ command_table.setStyle(TableStyle([
 story.extend([command_table, Spacer(1, 12), evidence("terminal-evidence.png", "Terminal evidence: complete Git sequence", "This screenshot records git init, staging, the initial commit, feature branch creation, checkout, merge, remote configuration, and push. The final verification confirms main tracks origin/main and the working tree is clean."), PageBreak()])
 
 story.extend([
-    P("4. GitHub Repository", "Section"),
+    P("5. GitHub Repository", "Section"),
     P("The published repository is https://github.com/kartikm95-2006/taskline-to-do-list. The main branch contains the application, README, report, evidence, and workflow files.", "Body"),
     evidence("github-repository.png", "GitHub website evidence: published repository", "This screenshot shows the repository under the kartikm95-2006 account. It verifies that the project files and assignment report were published to GitHub."),
-    P("5. Delivered Application", "Section"),
-    evidence("taskline-app.png", "Application evidence: Daymark browser interface", "The application screenshot shows the delivered To-Do List interface with task entry, filtering controls, task count, and completion progress. It represents the working software built for the Jira stories."),
+    P("6. Delivered Application", "Section"),
+    evidence("taskline-app.png", "Application evidence: Daymark browser interface", "The application screenshot displays two assignment-related open tasks and reports 2 tasks. This confirms that client-side task creation, persistence, filtering, and open-task counting are functioning."),
     PageBreak(),
-    P("6. GitHub Actions", "Section"),
-    P("The workflow file is .github/workflows/workflow.yml and runs automatically on every push to main. It checks out the repository and validates index.html, style.css, script.js, the Daymark title, and the task form.", "Body"),
+        P("7. GitHub Actions", "Section"),
+        P("The workflow file is .github/workflows/workflow.yml and runs automatically on pushes to main and pull requests targeting main. It also supports manual execution. The validation job checks index.html, style.css, script.js, the Daymark title, and the task form.", "Body"),
 ])
-yaml = """name: Validate To-Do List
+yaml = """name: Daymark To-Do List CI
 
 on:
   push:
     branches: [ main ]
+    pull_request:
+        branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -177,9 +187,9 @@ jobs:
           test -f script.js
           grep -q \"Daymark\" index.html
           grep -q \"taskForm\" script.js
-          echo \"Daymark To-Do List project validation passed\"
+          echo \"Daymark To-Do List project files validated successfully\"
 """
-story.extend([Preformatted(yaml, styles["CodeSmall"]), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Validate To-Do List runs on main. The workflow executed after pushes and confirmed that the required project files and content are valid."), P("7. Conclusion", "Section"), P("The Daymark To-Do List Management System was planned in Jira, implemented as a functional web application, tracked through a Scrum sprint, managed with Git branches and commits, published to GitHub, and verified automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
+story.extend([Preformatted(yaml, styles["CodeSmall"]), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Daymark To-Do List CI runs on main. The workflow executes after pushes and is configured to validate pull requests targeting main as well."), P("8. Conclusion", "Section"), P("The Daymark To-Do List Management System was planned with two Jira Scrum stories, delivered through one sprint, versioned with Git, published to GitHub, and validated automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
 
 doc = SimpleDocTemplate(str(OUT), pagesize=A4, rightMargin=42, leftMargin=42, topMargin=42, bottomMargin=44, title="Assignment -1 To-Do List Management System", author="Student")
 doc.build(story, onFirstPage=footer, onLaterPages=footer)

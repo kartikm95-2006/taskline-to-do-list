@@ -1,7 +1,9 @@
-name: Validate To-Do List
+name: Daymark To-Do List CI
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
@@ -21,4 +23,4 @@ jobs:
           test -f script.js
           grep -q "Daymark" index.html
           grep -q "taskForm" script.js
-          echo "Daymark To-Do List project validation passed"
+          echo "Daymark To-Do List project files validated successfully"
