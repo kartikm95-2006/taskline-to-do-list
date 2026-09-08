@@ -1,13 +1,13 @@
 # Assignment -1
 ## To-Do List Management System
 
-**Student:** ____________________  
+**Student:** Kartik R Mahindrakar  
 **Date:** ____________________  
 **GitHub Repository:** https://github.com/kartikm95-2006/taskline-to-do-list
 
 ## 1. Project Overview
 
-Taskline is a browser-based To-Do List Management System. Users can add tasks, mark tasks completed, filter tasks, delete tasks, and see completion progress.
+Daymark is a browser-based To-Do List Management System. Users can add tasks, mark tasks completed, filter tasks, delete tasks, and see completion progress.
 
 ## 2. Jira Scrum Project
 
@@ -112,9 +112,9 @@ jobs:
           test -f index.html
           test -f style.css
           test -f script.js
-          grep -q "Taskline" index.html
+          grep -q "Daymark" index.html
           grep -q "taskForm" script.js
-          echo "To-Do List project validation passed"
+          echo "Daymark To-Do List project validation passed"
 ```
 
 _Insert GitHub Actions YAML screenshot._  

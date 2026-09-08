@@ -72,7 +72,7 @@ def footer(canvas, doc):
     canvas.line(42, 32, A4[0] - 42, 32)
     canvas.setFont("Helvetica", 8)
     canvas.setFillColor(colors.HexColor("#718086"))
-    canvas.drawString(42, 20, "Taskline To-Do List | Assignment -1")
+    canvas.drawString(42, 20, "Daymark To-Do List | Assignment -1")
     canvas.drawRightString(A4[0] - 42, 20, f"Page {doc.page}")
     canvas.restoreState()
 
@@ -84,7 +84,7 @@ story.extend([
     P("To-Do List Management System", "Subtitle"),
 ])
 meta = Table([
-    [P("Student", "Small"), P("____________________", "Small")],
+    [P("Student", "Small"), P("Kartik R Mahindrakar", "Small")],
     [P("Date", "Small"), P("8 September 2026", "Small")],
     [P("GitHub Repository", "Small"), P("https://github.com/kartikm95-2006/taskline-to-do-list", "Small")],
 ], colWidths=[1.45 * inch, 5.0 * inch])
@@ -102,7 +102,7 @@ story.extend([meta, Spacer(1, 14)])
 
 story.extend([
     P("1. Project Overview", "Section"),
-    P("Taskline is a browser-based To-Do List Management System. Users can add tasks, mark tasks completed, filter tasks, delete tasks, persist tasks in local storage, and see completion progress.", "Body"),
+    P("Daymark is a browser-based To-Do List Management System. Users can add tasks, mark tasks completed, filter tasks, delete tasks, persist tasks in local storage, and see completion progress.", "Body"),
     P("Technology: HTML, CSS, JavaScript, browser localStorage, Git, GitHub, Jira, and GitHub Actions.", "Body"),
     P("2. Jira Scrum Project", "Section"),
     P("The Jira project is To-Do List Management System with project key TODO. The sprint is To-Do Sprint 1.", "Body"),
@@ -149,10 +149,10 @@ story.extend([
     P("The published repository is https://github.com/kartikm95-2006/taskline-to-do-list. The main branch contains the application, README, report, evidence, and workflow files.", "Body"),
     evidence("github-repository.png", "GitHub website evidence: published repository", "This screenshot shows the repository under the kartikm95-2006 account. It verifies that the project files and assignment report were published to GitHub."),
     P("5. Delivered Application", "Section"),
-    evidence("taskline-app.png", "Application evidence: Taskline browser interface", "The application screenshot shows the delivered To-Do List interface with task entry, filtering controls, task count, and completion progress. It represents the working software built for the Jira stories."),
+    evidence("taskline-app.png", "Application evidence: Daymark browser interface", "The application screenshot shows the delivered To-Do List interface with task entry, filtering controls, task count, and completion progress. It represents the working software built for the Jira stories."),
     PageBreak(),
     P("6. GitHub Actions", "Section"),
-    P("The workflow file is .github/workflows/workflow.yml and runs automatically on every push to main. It checks out the repository and validates index.html, style.css, script.js, the Taskline title, and the task form.", "Body"),
+    P("The workflow file is .github/workflows/workflow.yml and runs automatically on every push to main. It checks out the repository and validates index.html, style.css, script.js, the Daymark title, and the task form.", "Body"),
 ])
 yaml = """name: Validate To-Do List
 
@@ -175,12 +175,11 @@ jobs:
           test -f index.html
           test -f style.css
           test -f script.js
-          grep -q \"Taskline\" index.html
+          grep -q \"Daymark\" index.html
           grep -q \"taskForm\" script.js
-          echo \"To-Do List project validation passed\""" 
-          echo \"To-Do List project validation passed\"
+          echo \"Daymark To-Do List project validation passed\"
 """
-story.extend([Preformatted(yaml, styles["CodeSmall"]), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Validate To-Do List runs on main. The workflow executed after pushes and confirmed that the required project files and content are valid."), P("7. Conclusion", "Section"), P("The To-Do List Management System was planned in Jira, implemented as a functional web application, tracked through a Scrum sprint, managed with Git branches and commits, published to GitHub, and verified automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
+story.extend([Preformatted(yaml, styles["CodeSmall"]), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Validate To-Do List runs on main. The workflow executed after pushes and confirmed that the required project files and content are valid."), P("7. Conclusion", "Section"), P("The Daymark To-Do List Management System was planned in Jira, implemented as a functional web application, tracked through a Scrum sprint, managed with Git branches and commits, published to GitHub, and verified automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
 
 doc = SimpleDocTemplate(str(OUT), pagesize=A4, rightMargin=42, leftMargin=42, topMargin=42, bottomMargin=44, title="Assignment -1 To-Do List Management System", author="Student")
 doc.build(story, onFirstPage=footer, onLaterPages=footer)

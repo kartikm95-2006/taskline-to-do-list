@@ -19,6 +19,6 @@ jobs:
           test -f index.html
           test -f style.css
           test -f script.js
-          grep -q "Taskline" index.html
+          grep -q "Daymark" index.html
           grep -q "taskForm" script.js
-          echo "To-Do List project validation passed"
+          echo "Daymark To-Do List project validation passed"
