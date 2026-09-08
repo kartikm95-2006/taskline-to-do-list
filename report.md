@@ -23,6 +23,7 @@ Taskline is a browser-based To-Do List Management System. Users can add tasks, m
 
 ### Evidence
 
+![Jira sprint evidence](jira-sprint-done.png)
 _Jira project screenshot: To-Do List Management System (`TODO`)._  
 **Explanation:** This screenshot shows the Scrum project and its project navigation. The project key `TODO` identifies the Jira space used for the assignment.
 
@@ -110,6 +111,7 @@ jobs:
 _Insert GitHub Actions YAML screenshot._  
 **Explanation:** The workflow runs automatically on every push to main and also supports manual execution.
 
+![GitHub Actions success evidence](github-actions-success.png)
 _Successful GitHub Actions run screenshot._  
 **Explanation:** GitHub Actions shows a green successful run for `Validate To-Do List #1` on `main`, triggered by commit `c60b732`. The run validates all required project files.
 
