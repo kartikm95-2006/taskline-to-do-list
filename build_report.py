@@ -160,6 +160,7 @@ story.extend([
     P("3. Sprint Planning and Execution", "Section"),
     P("Both stories were assigned to To-Do Sprint 1 before execution. The sprint was started for the active two-week window, and each story was moved through To Do, In Progress, and Done. Jira's final sprint summary shows 0 items in To Do, 0 items in In Progress, and 2 items in Done.", "Body"),
     P("Status-history evidence: Jira records the stories being assigned to the sprint and progressing from To Do to In Progress and then to Done. The captured final board is the visible completion evidence for this sequence.", "Body"),
+    evidence("jira-sprint-history.png", "Jira evidence: story status and sprint assignment", "This Jira work-item view shows TODO-1 in Done and assigned to TODO Sprint 1. It provides dedicated evidence for the execution section alongside the final sprint board screenshot."),
     P("4. Git Repository and Operations", "Section"),
     P("The local repository was initialized, the project files were committed, a feature branch was created and merged into main, and the result was pushed to GitHub.", "Body"),
 ])
