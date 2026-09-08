@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskline | To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PERSONAL WORKSPACE</p>
+        <h1>Taskline</h1>
+      </div>
+      <div class="date-chip" id="today"></div>
+    </header>
+
+    <section class="hero-panel">
+      <div>
+        <p class="eyebrow">FOCUS FOR TODAY</p>
+        <h2>Make progress visible.</h2>
+        <p class="hero-copy">Capture the next useful action, then move it across the finish line.</p>
+      </div>
+      <div class="progress-ring" aria-label="Completion progress"><span id="progressValue">0%</span></div>
+    </section>
+
+    <section class="workspace" aria-label="To-do workspace">
+      <form class="task-form" id="taskForm">
+        <label for="taskInput">Add a task</label>
+        <div class="input-row">
+          <input id="taskInput" name="task" type="text" placeholder="What needs your attention?" autocomplete="off" required>
+          <button type="submit">Add task</button>
+        </div>
+      </form>
+      <div class="toolbar">
+        <div class="filter-group" role="group" aria-label="Filter tasks">
+          <button class="filter active" data-filter="all" type="button">All</button>
+          <button class="filter" data-filter="active" type="button">Active</button>
+          <button class="filter" data-filter="completed" type="button">Completed</button>
+        </div>
+        <span class="task-count" id="taskCount">0 tasks</span>
+      </div>
+      <ul class="task-list" id="taskList" aria-live="polite"></ul>
+      <p class="empty-state" id="emptyState">Your list is clear. Add a task to get moving.</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
