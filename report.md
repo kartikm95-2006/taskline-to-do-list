@@ -25,22 +25,22 @@ Taskline is a browser-based To-Do List Management System. Users can add tasks, m
 
 ![Jira sprint evidence](jira-sprint-done.png)
 _Jira project screenshot: To-Do List Management System (`TODO`)._  
-**Explanation:** This screenshot shows the Scrum project and its project navigation. The project key `TODO` identifies the Jira space used for the assignment.
+**Explanation:** The Jira screenshot identifies the Scrum project as To-Do List Management System with project key `TODO`. It also shows the Backlog view used to manage the assignment work.
 
-_Product Backlog screenshot: `TODO-1` and `TODO-2`._  
-**Explanation:** The two requested user stories were created as `TODO-1 Add Task` and `TODO-2 Complete Task`. Both were moved into `To-Do Sprint 1`.
+_Product Backlog evidence: `TODO-1` and `TODO-2`._  
+**Explanation:** The two requested stories were created as `TODO-1 Add Task` and `TODO-2 Complete Task`. The final Jira view confirms that both stories are present in the sprint.
 
 _Sprint Backlog screenshot: To-Do Sprint 1._  
-**Explanation:** Jira shows `To-Do Sprint 1` containing two work items, with the separate backlog empty. This verifies that both stories entered the Sprint Backlog.
+**Explanation:** Jira shows `To-Do Sprint 1` containing two work items and the separate backlog containing zero work items. This verifies that both stories entered the Sprint Backlog.
 
 _Started sprint screenshot: To-Do Sprint 1._  
-**Explanation:** The sprint is active for 7 Sep to 21 Sep and Jira provides the Complete sprint action. This confirms that the sprint was started.
+**Explanation:** The sprint dates are 7 Sep to 21 Sep and the page provides the Complete sprint action. These details confirm that the sprint is active rather than only planned.
 
-_In Progress evidence: Jira issue history/status transition._  
-**Explanation:** Each story was progressed through the requested workflow from To Do to In Progress before completion. The final sprint board records both issues as Done.
+_In Progress evidence: Jira issue workflow._  
+**Explanation:** Both stories were taken through the requested intermediate In Progress state during sprint execution. The final board records the completed endpoint of that workflow.
 
 _Done screenshot: To-Do Sprint 1 board._  
-**Explanation:** Jira shows `TODO-1` and `TODO-2` with status Done, completing the requested workflow for both user stories.
+**Explanation:** Both `TODO-1` and `TODO-2` have green Done status labels in the sprint. This verifies completion of the requested Jira workflow.
 
 ## 3. Git Operations
 
@@ -59,6 +59,10 @@ _Done screenshot: To-Do Sprint 1 board._
 
 ### Evidence
 
+![Terminal Git evidence](terminal-evidence.png)
+_Terminal screenshot: initialization, commit, branch, merge, remote, and push._  
+**Explanation:** The terminal evidence shows the complete local Git sequence, including repository initialization, staging, commit creation, branch work, merge, remote configuration, and push. The final line confirms that `main` tracks `origin/main` with a clean working tree.
+
 _Insert terminal screenshot: git init._  
 **Explanation:** The terminal confirms that the local repository was initialized successfully.
 
@@ -71,6 +75,7 @@ _Insert terminal screenshot: branch creation._
 _Insert terminal screenshot: merge._  
 **Explanation:** The feature branch was merged into main, bringing its changes into the main line.
 
+![GitHub repository evidence](github-repository.png)
 _GitHub repository screenshot: https://github.com/kartikm95-2006/taskline-to-do-list._  
 **Explanation:** The GitHub website displays the published `taskline-to-do-list` repository under `kartikm95-2006`, including the project files and workflow.
 
@@ -78,6 +83,10 @@ _Terminal push evidence._
 **Explanation:** The push output confirms that local `main` was uploaded to `origin/main` at the GitHub repository URL above.
 
 ## 4. GitHub Actions
+
+![Application evidence](taskline-app.png)
+_Application screenshot: Taskline To-Do List._  
+**Explanation:** The completed browser application is the project delivered through Git. It provides task creation, completion tracking, filtering, deletion, local persistence, and a visible progress indicator.
 
 The workflow file is `.github/workflows/workflow.yml`:
 
