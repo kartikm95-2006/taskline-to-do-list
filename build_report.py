@@ -100,23 +100,25 @@ def evidence(image_name, title, explanation):
 
 def cover(canvas, doc):
     canvas.saveState()
-    dark = colors.HexColor("#172724")
+    paper = colors.HexColor("#f5f1e8")
     coral = colors.HexColor("#e86950")
-    canvas.setFillColor(dark)
+    ink = colors.HexColor("#111817")
+    canvas.setFillColor(paper)
     canvas.rect(42, 300, A4[0] - 84, 470, fill=1, stroke=0)
     canvas.setFillColor(coral)
-    canvas.rect(42, 760, A4[0] - 84, 8, fill=1, stroke=0)
-    canvas.setFillColor(coral)
+    canvas.rect(42, 760, A4[0] - 84, 10, fill=1, stroke=0)
+    canvas.rect(42, 300, 8, 470, fill=1, stroke=0)
+    canvas.setFillColor(ink)
     canvas.setFont("Arial-Bold", 8)
     canvas.drawString(78, 704, "SCRUM, GIT, GITHUB AND GITHUB ACTIONS")
-    canvas.setFillColor(colors.HexColor("#f8f5ed"))
+    canvas.setFillColor(ink)
     canvas.setFont("Georgia", 29)
     canvas.drawString(78, 650, "To-Do List Management System")
     canvas.setFillColor(coral)
     canvas.setFont("Georgia-Italic", 28)
     canvas.drawString(78, 610, "Assignment Report")
     canvas.setFont("Arial-Bold", 8)
-    canvas.setFillColor(colors.HexColor("#f8f5ed"))
+    canvas.setFillColor(ink)
     left_x, right_x = 78, 335
     rows = [("STUDENT", "Kartik R Mahindrakar", "PROJECT", "Daymark To-Do List Management System"),
         ("JIRA PROJECT", "To-Do List Management System (TODO)", "SPRINT", "To-Do Sprint 1"),
@@ -200,6 +202,7 @@ story.extend([
     P("5. GitHub Repository", "Section"),
     P("The published repository is https://github.com/kartikm95-2006/taskline-to-do-list. The main branch contains the application, README, report, evidence, and workflow files.", "Body"),
     evidence("github-repository.png", "GitHub website evidence: published repository", "This screenshot shows the repository under the kartikm95-2006 account. It verifies that the project files and assignment report were published to GitHub."),
+    PageBreak(),
     P("6. Delivered Application", "Section"),
     evidence("taskline-app.png", "Application evidence: Daymark browser interface", "The application screenshot displays two assignment-related open tasks and reports 2 tasks. This confirms that client-side task creation, persistence, filtering, and open-task counting are functioning."),
     PageBreak(),
