@@ -18,37 +18,40 @@ OUT = ROOT / "Assignment-1-To-Do-List-Report.pdf"
 pdfmetrics.registerFont(TTFont("Arial", r"C:\Windows\Fonts\arial.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Bold", r"C:\Windows\Fonts\arialbd.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Italic", r"C:\Windows\Fonts\ariali.ttf"))
+pdfmetrics.registerFont(TTFont("Georgia", r"C:\Windows\Fonts\georgia.ttf"))
+pdfmetrics.registerFont(TTFont("Georgia-Bold", r"C:\Windows\Fonts\georgiab.ttf"))
+pdfmetrics.registerFont(TTFont("Georgia-Italic", r"C:\Windows\Fonts\georgiai.ttf"))
 
 styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(
-    name="ReportTitle", parent=styles["Title"], fontName="Arial-Bold",
-    fontSize=24, leading=28, textColor=colors.HexColor("#176b65"),
+    name="ReportTitle", parent=styles["Title"], fontName="Georgia-Bold",
+    fontSize=24, leading=28, textColor=colors.HexColor("#e86950"),
     alignment=TA_CENTER, spaceAfter=6,
 ))
 styles.add(ParagraphStyle(
-    name="Subtitle", parent=styles["Normal"], fontName="Arial", fontSize=12, leading=16,
-    textColor=colors.HexColor("#5c6b70"), alignment=TA_CENTER, spaceAfter=20,
+    name="Subtitle", parent=styles["Normal"], fontName="Georgia-Italic", fontSize=12, leading=16,
+    textColor=colors.HexColor("#e86950"), alignment=TA_CENTER, spaceAfter=20,
 ))
 styles.add(ParagraphStyle(
-    name="Section", parent=styles["Heading2"], fontName="Arial-Bold",
-    fontSize=16, leading=20, textColor=colors.HexColor("#176b65"),
+    name="Section", parent=styles["Heading2"], fontName="Georgia",
+    fontSize=16, leading=20, textColor=colors.HexColor("#df684c"),
     spaceBefore=18, spaceAfter=8,
 ))
 styles.add(ParagraphStyle(
-    name="Subsection", parent=styles["Heading3"], fontName="Arial-Bold",
+    name="Subsection", parent=styles["Heading3"], fontName="Georgia",
     fontSize=12, leading=15, textColor=colors.HexColor("#df684c"),
     spaceBefore=10, spaceAfter=4,
 ))
 styles.add(ParagraphStyle(
-    name="Body", parent=styles["BodyText"], fontName="Arial", fontSize=9.5, leading=14,
-    textColor=colors.HexColor("#26363d"), spaceAfter=6,
+    name="Body", parent=styles["BodyText"], fontName="Georgia", fontSize=9.5, leading=14,
+    textColor=colors.HexColor("#20302d"), spaceAfter=6,
 ))
 styles.add(ParagraphStyle(
-    name="Small", parent=styles["BodyText"], fontName="Arial", fontSize=8, leading=11,
+    name="Small", parent=styles["BodyText"], fontName="Georgia", fontSize=8, leading=11,
     textColor=colors.HexColor("#52636a"), spaceAfter=3,
 ))
 styles.add(ParagraphStyle(
-    name="Caption", parent=styles["BodyText"], fontName="Arial-Bold",
+    name="Caption", parent=styles["BodyText"], fontName="Georgia-Bold",
     fontSize=9, leading=12, textColor=colors.HexColor("#df684c"), spaceBefore=4,
 ))
 styles.add(ParagraphStyle(
@@ -68,12 +71,52 @@ def evidence(image_name, title, explanation):
     scale = min(max_width / source_width, max_height / source_height)
     image = Image(str(image_path), width=source_width * scale, height=source_height * scale)
     image.hAlign = "CENTER"
-    card = [
-        P(title, "Caption"),
-        image,
-        P(explanation, "Small"),
-    ]
-    return KeepTogether(card)
+    card = Table([[P(title, "Caption")], [image], [P(explanation, "Small")]], colWidths=[6.45 * inch])
+    card.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f4f0e8")),
+        ("BOX", (0, 0), (-1, -1), 0.6, colors.HexColor("#d9dfd8")),
+        ("LEFTPADDING", (0, 0), (-1, -1), 12),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 12),
+        ("TOPPADDING", (0, 0), (-1, -1), 9),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
+    return KeepTogether([card])
+
+
+def cover(canvas, doc):
+    canvas.saveState()
+    dark = colors.HexColor("#172724")
+    coral = colors.HexColor("#e86950")
+    canvas.setFillColor(dark)
+    canvas.rect(42, 300, A4[0] - 84, 470, fill=1, stroke=0)
+    canvas.setFillColor(coral)
+    canvas.rect(42, 760, A4[0] - 84, 8, fill=1, stroke=0)
+    canvas.setFillColor(coral)
+    canvas.setFont("Arial-Bold", 8)
+    canvas.drawString(78, 704, "SCRUM, GIT, GITHUB AND GITHUB ACTIONS")
+    canvas.setFillColor(colors.HexColor("#f8f5ed"))
+    canvas.setFont("Georgia", 29)
+    canvas.drawString(78, 650, "To-Do List Management System")
+    canvas.setFillColor(coral)
+    canvas.setFont("Georgia-Italic", 28)
+    canvas.drawString(78, 610, "Assignment Report")
+    canvas.setFont("Arial-Bold", 8)
+    canvas.setFillColor(colors.HexColor("#f8f5ed"))
+    left_x, right_x = 78, 335
+    rows = [("STUDENT", "Kartik R Mahindrakar", "PROJECT", "Daymark To-Do List Management System"),
+            ("JIRA PROJECT", "To-Do List Management System (TODO)", "SPRINT", "To-Do Sprint 1"),
+            ("GITHUB REPOSITORY", "github.com/kartikm95-2006/taskline-to-do-list", "PREPARED", "September 8, 2026")]
+    y = 548
+    for left_label, left_value, right_label, right_value in rows:
+        canvas.setFont("Arial-Bold", 7)
+        canvas.drawString(left_x, y, left_label)
+        canvas.drawString(right_x, y, right_label)
+        canvas.setFont("Georgia", 9)
+        canvas.drawString(left_x, y - 15, left_value)
+        canvas.drawString(right_x, y - 15, right_value)
+        y -= 56
+    canvas.restoreState()
 
 
 def footer(canvas, doc):
@@ -87,31 +130,7 @@ def footer(canvas, doc):
     canvas.restoreState()
 
 
-story = []
-story.extend([
-    Spacer(1, 34),
-    P("SCRUM, GIT, GITHUB AND GITHUB ACTIONS", "ReportTitle"),
-    P("To-Do List Management System Assignment Report", "Subtitle"),
-])
-meta = Table([
-    [P("Student", "Small"), P("Kartik R Mahindrakar", "Small")],
-    [P("Project", "Small"), P("Daymark To-Do List Management System", "Small")],
-    [P("Jira Project", "Small"), P("To-Do List Management System (key: TODO)", "Small")],
-    [P("Sprint", "Small"), P("To-Do Sprint 1", "Small")],
-    [P("Date", "Small"), P("8 September 2026", "Small")],
-    [P("GitHub Repository", "Small"), P("https://github.com/kartikm95-2006/taskline-to-do-list", "Small")],
-], colWidths=[1.45 * inch, 5.0 * inch])
-meta.setStyle(TableStyle([
-    ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#eef6f3")),
-    ("BOX", (0, 0), (-1, -1), 0.6, colors.HexColor("#d0e1dc")),
-    ("INNERGRID", (0, 0), (-1, -1), 0.3, colors.HexColor("#d0e1dc")),
-    ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-    ("LEFTPADDING", (0, 0), (-1, -1), 10),
-    ("RIGHTPADDING", (0, 0), (-1, -1), 10),
-    ("TOPPADDING", (0, 0), (-1, -1), 7),
-    ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
-]))
-story.extend([meta, Spacer(1, 14)])
+story = [Spacer(1, 1), PageBreak()]
 
 story.extend([
     P("1. Project Overview", "Section"),
@@ -127,7 +146,6 @@ story.extend([
     P("3. Sprint Planning and Execution", "Section"),
     P("Both stories were assigned to To-Do Sprint 1 before execution. The sprint was started for the active two-week window, and each story was moved through To Do, In Progress, and Done. Jira's final sprint summary shows 0 items in To Do, 0 items in In Progress, and 2 items in Done.", "Body"),
     P("Status-history evidence: Jira records the stories being assigned to the sprint and progressing from To Do to In Progress and then to Done. The captured final board is the visible completion evidence for this sequence.", "Body"),
-    PageBreak(),
     P("4. Git Repository and Operations", "Section"),
     P("The local repository was initialized, the project files were committed, a feature branch was created and merged into main, and the result was pushed to GitHub.", "Body"),
 ])
@@ -202,5 +220,5 @@ jobs:
 story.extend([Preformatted(yaml, styles["CodeSmall"]), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Daymark To-Do List CI runs on main. The workflow executes after pushes and is configured to validate pull requests targeting main as well."), P("8. Conclusion", "Section"), P("The Daymark To-Do List Management System was planned with two Jira Scrum stories, delivered through one sprint, versioned with Git, published to GitHub, and validated automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
 
 doc = SimpleDocTemplate(str(OUT), pagesize=A4, rightMargin=42, leftMargin=42, topMargin=42, bottomMargin=44, title="Assignment -1 To-Do List Management System", author="Student")
-doc.build(story, onFirstPage=footer, onLaterPages=footer)
+doc.build(story, onFirstPage=cover, onLaterPages=footer)
 print(OUT)
