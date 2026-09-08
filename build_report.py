@@ -64,6 +64,20 @@ def P(text, style="Body"):
     return Paragraph(text, styles[style])
 
 
+def code_panel(text):
+    code = Preformatted(text, styles["CodeSmall"])
+    panel = Table([[code]], colWidths=[6.45 * inch])
+    panel.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#172724")),
+        ("BOX", (0, 0), (-1, -1), 0.6, colors.HexColor("#314b45")),
+        ("LEFTPADDING", (0, 0), (-1, -1), 14),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 14),
+        ("TOPPADDING", (0, 0), (-1, -1), 12),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+    ]))
+    return panel
+
+
 def evidence(image_name, title, explanation):
     image_path = ROOT / image_name
     source_width, source_height = PILImage.open(image_path).size
@@ -217,7 +231,7 @@ jobs:
           grep -q \"taskForm\" script.js
           echo \"Daymark To-Do List project files validated successfully\"
 """
-story.extend([Preformatted(yaml, styles["CodeSmall"]), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Daymark To-Do List CI runs on main. The workflow executes after pushes and is configured to validate pull requests targeting main as well."), P("8. Conclusion", "Section"), P("The Daymark To-Do List Management System was planned with two Jira Scrum stories, delivered through one sprint, versioned with Git, published to GitHub, and validated automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
+story.extend([code_panel(yaml), Spacer(1, 10), evidence("github-actions-success.png", "GitHub Actions evidence: successful workflow runs", "The green checks show successful Daymark To-Do List CI runs on main. The workflow executes after pushes and is configured to validate pull requests targeting main as well."), P("8. Conclusion", "Section"), P("The Daymark To-Do List Management System was planned with two Jira Scrum stories, delivered through one sprint, versioned with Git, published to GitHub, and validated automatically with GitHub Actions. The repository link and evidence are included for submission.", "Body")])
 
 doc = SimpleDocTemplate(str(OUT), pagesize=A4, rightMargin=42, leftMargin=42, topMargin=42, bottomMargin=44, title="Assignment -1 To-Do List Management System", author="Student")
 doc.build(story, onFirstPage=cover, onLaterPages=footer)
