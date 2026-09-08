@@ -4,6 +4,9 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from PIL import Image as PILImage
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image,
     PageBreak, Preformatted, KeepTogether
@@ -12,36 +15,40 @@ from reportlab.platypus import (
 ROOT = Path(__file__).parent
 OUT = ROOT / "Assignment-1-To-Do-List-Report.pdf"
 
+pdfmetrics.registerFont(TTFont("Arial", r"C:\Windows\Fonts\arial.ttf"))
+pdfmetrics.registerFont(TTFont("Arial-Bold", r"C:\Windows\Fonts\arialbd.ttf"))
+pdfmetrics.registerFont(TTFont("Arial-Italic", r"C:\Windows\Fonts\ariali.ttf"))
+
 styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(
-    name="ReportTitle", parent=styles["Title"], fontName="Helvetica-Bold",
+    name="ReportTitle", parent=styles["Title"], fontName="Arial-Bold",
     fontSize=24, leading=28, textColor=colors.HexColor("#176b65"),
     alignment=TA_CENTER, spaceAfter=6,
 ))
 styles.add(ParagraphStyle(
-    name="Subtitle", parent=styles["Normal"], fontSize=12, leading=16,
+    name="Subtitle", parent=styles["Normal"], fontName="Arial", fontSize=12, leading=16,
     textColor=colors.HexColor("#5c6b70"), alignment=TA_CENTER, spaceAfter=20,
 ))
 styles.add(ParagraphStyle(
-    name="Section", parent=styles["Heading2"], fontName="Helvetica-Bold",
+    name="Section", parent=styles["Heading2"], fontName="Arial-Bold",
     fontSize=16, leading=20, textColor=colors.HexColor("#176b65"),
     spaceBefore=18, spaceAfter=8,
 ))
 styles.add(ParagraphStyle(
-    name="Subsection", parent=styles["Heading3"], fontName="Helvetica-Bold",
+    name="Subsection", parent=styles["Heading3"], fontName="Arial-Bold",
     fontSize=12, leading=15, textColor=colors.HexColor("#df684c"),
     spaceBefore=10, spaceAfter=4,
 ))
 styles.add(ParagraphStyle(
-    name="Body", parent=styles["BodyText"], fontSize=9.5, leading=14,
+    name="Body", parent=styles["BodyText"], fontName="Arial", fontSize=9.5, leading=14,
     textColor=colors.HexColor("#26363d"), spaceAfter=6,
 ))
 styles.add(ParagraphStyle(
-    name="Small", parent=styles["BodyText"], fontSize=8, leading=11,
+    name="Small", parent=styles["BodyText"], fontName="Arial", fontSize=8, leading=11,
     textColor=colors.HexColor("#52636a"), spaceAfter=3,
 ))
 styles.add(ParagraphStyle(
-    name="Caption", parent=styles["BodyText"], fontName="Helvetica-Bold",
+    name="Caption", parent=styles["BodyText"], fontName="Arial-Bold",
     fontSize=9, leading=12, textColor=colors.HexColor("#df684c"), spaceBefore=4,
 ))
 styles.add(ParagraphStyle(
@@ -56,7 +63,10 @@ def P(text, style="Body"):
 
 def evidence(image_name, title, explanation):
     image_path = ROOT / image_name
-    image = Image(str(image_path), width=6.45 * inch, height=3.55 * inch)
+    source_width, source_height = PILImage.open(image_path).size
+    max_width, max_height = 6.45 * inch, 4.15 * inch
+    scale = min(max_width / source_width, max_height / source_height)
+    image = Image(str(image_path), width=source_width * scale, height=source_height * scale)
     image.hAlign = "CENTER"
     card = [
         P(title, "Caption"),
@@ -70,7 +80,7 @@ def footer(canvas, doc):
     canvas.saveState()
     canvas.setStrokeColor(colors.HexColor("#d9e3df"))
     canvas.line(42, 32, A4[0] - 42, 32)
-    canvas.setFont("Helvetica", 8)
+    canvas.setFont("Arial", 8)
     canvas.setFillColor(colors.HexColor("#718086"))
     canvas.drawString(42, 20, "Daymark To-Do List | Assignment -1")
     canvas.drawRightString(A4[0] - 42, 20, f"Page {doc.page}")
